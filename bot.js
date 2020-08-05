@@ -45,6 +45,7 @@ client.on('message', msg => {
         }
     }
 
+    // If we haven't posted today, post a message to the channel
     if (lastDayDone !== dayjs().date()) {
         msg.channel.send(`Only ${timeToAmsterdam} left until Amsterdam btw`)
         lastDayDone = dayjs().date()

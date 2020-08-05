@@ -2,7 +2,7 @@
 
 A bot that counts down to amsterdam holiday
 
----
+----------
 
 Once per day, assuming there is at least one message sent in the discord server per day, the bot will post the time left until amsterdam holiday
 
