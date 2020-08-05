@@ -8,6 +8,8 @@ const client = new Discord.Client()
 const amsterdamDate = dayjs('2020-09-24T16:05:00.000Z')
 let lastDayDone = dayjs().date() - 1
 
+console.log('Running')
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
   // const currentDate = dayjs()
