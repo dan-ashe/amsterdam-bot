@@ -1,0 +1,12 @@
+{
+  "name": "amsterdambot",
+  "version": "1.0.0",
+  "description": "A bot that counts down to Amsterdam holiday.",
+  "main": "bot.js",
+  "author": "Dxshe",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.8.32",
+    "discord.js": "^12.2.0"
+  }
+}
