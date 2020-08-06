@@ -50,7 +50,7 @@ client.on('message', msg => {
     }
 
     if (msg.tts) {
-        msg.reply("don't use tts you retard", { tts: true })
+        // msg.reply("don't use tts you retard", { tts: true })
     }
 
     // If we haven't posted today, post a message to the channel
