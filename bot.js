@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const auth = require('./auth.json')
+// const auth = require('./auth.json')
 const dayjs = require('dayjs')
 
 const myId = '740656002717712436'
