@@ -45,6 +45,10 @@ client.on('message', msg => {
         }
     }
 
+    if (msg.content.toLowerCase === 'what') {
+        msg.reply('fuck off noob')
+    }
+
     // If we haven't posted today, post a message to the channel
     if (lastDayDone !== dayjs().date()) {
         msg.channel.send(`Only ${timeToAmsterdam} left until Amsterdam btw`)
