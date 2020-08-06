@@ -57,7 +57,9 @@ client.on('message', msg => {
         msg.reply('fuck off noob')
     }
 
-    console.log(JSON.stringify(msg, null, 2))
+    if (!sentByMe(msg) && msg.tts) {
+        msg.reply("don't use tts retard", { tts: true })
+    }
 
     // If we haven't posted today, post a message to the channel
     if (lastDayDone !== dayjs().date()) {
@@ -80,5 +82,8 @@ let secondsToDhms = seconds => {
   return dDisplay + hDisplay + mDisplay + 'and ' + sDisplay
 }
 
+let sentByMe = msg => {
+    return msg.author.id == myId
+}
 
 client.login(auth.token)
