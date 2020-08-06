@@ -45,7 +45,7 @@ client.on('message', msg => {
         }
     }
 
-    if (msg.content.toLowerCase === 'what') {
+    if (msg.content.toLowerCase() === 'what') {
         msg.reply('fuck off noob')
     }
 
