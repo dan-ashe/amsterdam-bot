@@ -9,6 +9,11 @@ if (!auth.token) {
 }
 
 const myId = '740656002717712436'
+const rickyId = '312280771585114144'
+
+const powderEmojiId = '558693114986889218'
+const headEmojiId = '740968747832967262'
+const warhammerEmojiId = '558686875930591234'
 
 // Initialize Discord Bot
 const client = new Discord.Client()
@@ -61,6 +66,16 @@ client.on('message', msg => {
         msg.reply("don't use tts retard", { tts: true })
     }
 
+    if (oneInX(5000)) {
+        msg.react(warhammerEmojiId)
+        msg.reply("you rolled a Dragon Warhammer with that message")
+    }
+
+    if (sentByRicky(msg) && oneInX(15)) {
+        msg.react(powderEmojiId)
+        msg.react(headEmojiId)
+    }
+
     // If we haven't posted today, post a message to the channel
     if (lastDayDone !== dayjs().date()) {
         msg.channel.send(`Only ${timeToAmsterdam} left until Amsterdam btw`)
@@ -82,8 +97,16 @@ let secondsToDhms = seconds => {
   return dDisplay + hDisplay + mDisplay + 'and ' + sDisplay
 }
 
+let oneInX = x => {
+    return Math.floor(Math.random() * x) === 0
+}
+
 let sentByMe = msg => {
     return msg.author.id == myId
+}
+
+let sentByRicky = msg => {
+    return msg.author.id == rickyId
 }
 
 client.login(auth.token)
