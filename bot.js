@@ -10,10 +10,12 @@ if (!auth.token) {
 
 const myId = '740656002717712436'
 const rickyId = '312280771585114144'
+const learyId = '349148329470328835'
 
 const powderEmojiId = '558693114986889218'
 const headEmojiId = '740968747832967262'
 const warhammerEmojiId = '558686875930591234'
+const learyEmojiId = '558690186356064256'
 
 // Initialize Discord Bot
 const client = new Discord.Client()
@@ -68,7 +70,13 @@ client.on('message', msg => {
 
     if (oneInX(5000)) {
         msg.react(warhammerEmojiId)
-        msg.reply("you rolled a Dragon Warhammer with that message")
+        msg.reply("you rolled a Dragon Warhammer with that message gz")
+    }
+
+    console.log(msg)
+
+    if (sentByLeary(msg)) {
+        msg.react(learyEmojiId)
     }
 
     if (sentByRicky(msg) && oneInX(15)) {
@@ -107,6 +115,10 @@ let sentByMe = msg => {
 
 let sentByRicky = msg => {
     return msg.author.id == rickyId
+}
+
+let sentByLeary = msg => {
+    return msg.author.id == learyId
 }
 
 client.login(auth.token)
