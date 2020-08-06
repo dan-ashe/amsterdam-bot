@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-// const auth = require('./auth.json')
+const auth = require('./auth.json')
 const dayjs = require('dayjs')
 
 // Initialize Discord Bot
@@ -49,6 +49,10 @@ client.on('message', msg => {
         msg.reply('fuck off noob')
     }
 
+    if (msg.tts) {
+        msg.reply("don't use tts you retard", { tts: true })
+    }
+
     // If we haven't posted today, post a message to the channel
     if (lastDayDone !== dayjs().date()) {
         msg.channel.send(`Only ${timeToAmsterdam} left until Amsterdam btw`)
@@ -71,4 +75,4 @@ let secondsToDhms = seconds => {
 }
 
 
-client.login(process.env.BOT_TOKEN)
+client.login(process.env.BOT_TOKEN || auth.token)
