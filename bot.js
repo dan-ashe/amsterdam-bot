@@ -5,7 +5,7 @@ let auth = {
 }
 
 if (!auth.token) {
-    auth = require('auth.json')
+    auth = require('./auth.json')
 }
 
 const myId = '740656002717712436'
