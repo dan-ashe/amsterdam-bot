@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
-// const auth = require('./auth.json')
+const auth = require('./auth.json')
 const dayjs = require('dayjs')
+
+const myId = '740656002717712436'
 
 // Initialize Discord Bot
 const client = new Discord.Client()
@@ -49,8 +51,8 @@ client.on('message', msg => {
         msg.reply('fuck off noob')
     }
 
-    if (msg.tts) {
-        // msg.reply("don't use tts you retard", { tts: true })
+    if (msg.tts && msg.authorId !== myId) {
+        msg.reply("don't use tts you retard", { tts: true })
     }
 
     // If we haven't posted today, post a message to the channel
