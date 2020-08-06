@@ -51,10 +51,6 @@ client.on('message', msg => {
         msg.reply('fuck off noob')
     }
 
-    if (msg.tts && msg.authorId !== myId) {
-        msg.reply("don't use tts you retard", { tts: true })
-    }
-
     // If we haven't posted today, post a message to the channel
     if (lastDayDone !== dayjs().date()) {
         msg.channel.send(`Only ${timeToAmsterdam} left until Amsterdam btw`)
