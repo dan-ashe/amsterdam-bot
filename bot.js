@@ -1,7 +1,10 @@
 const Discord = require('discord.js')
 const dayjs = require('dayjs')
-let auth
-if (!process.env.PRODUCTION) {
+let auth = {
+    token: process.env.BOT_TOKEN
+}
+
+if (!auth.token) {
     auth = require('auth.json')
 }
 
@@ -54,6 +57,8 @@ client.on('message', msg => {
         msg.reply('fuck off noob')
     }
 
+    console.log(JSON.stringify(msg, null, 2))
+
     // If we haven't posted today, post a message to the channel
     if (lastDayDone !== dayjs().date()) {
         msg.channel.send(`Only ${timeToAmsterdam} left until Amsterdam btw`)
@@ -76,4 +81,4 @@ let secondsToDhms = seconds => {
 }
 
 
-client.login(process.env.BOT_TOKEN || auth.token)
+client.login(auth.token)
