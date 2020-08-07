@@ -75,7 +75,7 @@ client.on('message', msg => {
 
     console.log(msg)
 
-    if (sentByLeary(msg)) {
+    if (sentByLeary(msg) && oneInX(15)) {
         msg.react(learyEmojiId)
     }
 
