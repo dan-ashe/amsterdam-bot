@@ -84,24 +84,6 @@ client.on('message', msg => {
         msg.channel.send(`Only ${timeToAmsterdam} left until Amsterdam btw`)
         lastDayDone = dayjs().date()
     }
-
-
-    // inside a command, event listener, etc.
-    const exampleEmbed = new Discord.MessageEmbed()
-        .setColor('#0099ff')
-        .setTitle('Staking')
-        .setDescription('player 1   vs   player 2')
-        .setThumbnail('https://i.imgur.com/wSTFkRM.png')
-        .addFields(
-            { name: 'Inline field title', value: 'Some value here', inline: true },
-            { name: 'Inline field title', value: 'another here', inline: true },
-        )
-        .addField('Inline field title', 'Some value here', true)
-        .setImage('https://i.imgur.com/wSTFkRM.png')
-        .setTimestamp()
-        .setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
-
-    msg.channel.send(exampleEmbed);
 })
 
 let secondsToDhms = seconds => {
