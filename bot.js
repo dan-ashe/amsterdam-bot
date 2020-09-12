@@ -137,8 +137,6 @@ let sneakInVoice = async (requesterMsg, audioClip) => {
     } else {
         console.log('not in voice?')
     }
-
-    channel.leave()
 }
 
 client.login(auth.token)
