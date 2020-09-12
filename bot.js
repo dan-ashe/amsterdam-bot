@@ -17,6 +17,8 @@ const headEmojiId = '740968747832967262'
 const warhammerEmojiId = '558686875930591234'
 const learyEmojiId = '558690186356064256'
 
+const gordonClip = 'resources/audio/gordon.mp3'
+
 // Initialize Discord Bot
 const client = new Discord.Client()
 
@@ -25,13 +27,9 @@ let lastDayDone = dayjs().date() - 1
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
-  // const currentDate = dayjs()
-  // const secondsToAmsterdam = amsterdamDate.diff(currentDate, "second")
-  // const timeToAmsterdam = secondsToDhms(secondsToAmsterdam)
-  // console.log(timeToAmsterdam)
 })
 
-client.on('message', msg => {
+client.on('message', async msg => {
     // calculate time to amsterdam
     const currentDate = dayjs()
     const secondsToAmsterdam = amsterdamDate.diff(currentDate, "second")
@@ -42,6 +40,7 @@ client.on('message', msg => {
     if (msg.content.substring(0, 1) == '!') {
         let args = msg.content.substring(1).split(' ')
         let cmd = args[0]
+        cmd = cmd.toLowerCase()
        
         args = args.splice(1)
         switch(cmd) {
@@ -56,6 +55,9 @@ client.on('message', msg => {
                 break;
             case 'amst':
                 msg.reply(`only ${timeToAmsterdam} left until Amsterdam`)
+                break;
+            case 'gordon':
+                await sneakInVoice(msg, gordonClip)
                 break;
         }
     }
@@ -114,6 +116,29 @@ let sentByRicky = msg => {
 
 let sentByLeary = msg => {
     return msg.author.id == learyId
+}
+
+let sneakInVoice = async (requesterMsg, audioClip) => {
+    const channel = requesterMsg.member.voice.channel
+    if (channel) {
+        const connection = await channel.join()
+        const dispatcher = connection.play(audioClip)
+
+        dispatcher.on('start', () => {
+            console.log(`playing ${audioClip}`)
+        })
+
+        dispatcher.on('finish', () => {
+            console.log(`finished playing ${audioClip}`)
+        })
+
+        dispatcher.on('error', console.error);
+
+    } else {
+        console.log('not in voice?')
+    }
+
+    channel.leave()
 }
 
 client.login(auth.token)
