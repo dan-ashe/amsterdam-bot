@@ -18,6 +18,7 @@ const warhammerEmojiId = '558686875930591234'
 const learyEmojiId = '558690186356064256'
 
 const gordonClip = 'resources/audio/gordon.mp3'
+const wesClip = 'resources/audio/wes.mp3'
 
 // Initialize Discord Bot
 const client = new Discord.Client()
@@ -58,6 +59,9 @@ client.on('message', async msg => {
                 break;
             case 'gordon':
                 await sneakInVoice(msg, gordonClip)
+                break;
+            case 'wes':
+                await sneakInVoice(msg, wesClip)
                 break;
         }
     }
