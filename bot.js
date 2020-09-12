@@ -124,6 +124,8 @@ let sneakInVoice = async (requesterMsg, audioClip) => {
         const connection = await channel.join()
         const dispatcher = connection.play(audioClip)
 
+        dispatcher.setVolume(0.5)
+
         dispatcher.on('start', () => {
             console.log(`playing ${audioClip}`)
         })
