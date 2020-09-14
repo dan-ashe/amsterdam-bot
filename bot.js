@@ -136,6 +136,7 @@ let sneakInVoice = async (requesterMsg, audioClip) => {
 
         dispatcher.on('finish', () => {
             console.log(`finished playing ${audioClip}`)
+            await channel.leave()
         })
 
         dispatcher.on('error', console.error);
