@@ -8,18 +8,24 @@ if (!auth.token) {
     auth = require('./auth.json')
 }
 
+// User IDs
 const myId = '740656002717712436'
 const rickyId = '312280771585114144'
 const learyId = '349148329470328835'
 
+// Emoji IDs
 const powderEmojiId = '558693114986889218'
 const headEmojiId = '740968747832967262'
 const warhammerEmojiId = '558686875930591234'
 const learyEmojiId = '558690186356064256'
 
+// Audio Clips
 const gordonClip = 'resources/audio/gordon.mp3'
 const wesClip = 'resources/audio/wes.mp3'
 const originClip = 'resources/audio/originClip.mp3'
+
+// Image URLs
+const redKeyCardBunkersImage = 'https://i.imgur.com/VTaY0Y6.png'
 
 // Initialize Discord Bot
 const client = new Discord.Client()
@@ -47,6 +53,12 @@ client.on('message', async msg => {
                 break;
             case 'origin':
                 await sneakInVoice(msg, originClip)
+                break;
+            case 'red':
+                msg.reply(redKeyCardBunkersImage)
+                break;
+            case 'bunkers':
+                msg.reply(redKeyCardBunkersImage)
                 break;
         }
     }
