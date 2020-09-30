@@ -19,6 +19,7 @@ const learyEmojiId = '558690186356064256'
 
 const gordonClip = 'resources/audio/gordon.mp3'
 const wesClip = 'resources/audio/wes.mp3'
+const originClip = 'resources/audio/origin.mp3'
 
 // Initialize Discord Bot
 const client = new Discord.Client()
@@ -31,13 +32,6 @@ client.on('ready', () => {
 })
 
 client.on('message', async msg => {
-    // calculate time to amsterdam
-    const currentDate = dayjs()
-    const secondsToAmsterdam = amsterdamDate.diff(currentDate, "second")
-    const timeToAmsterdam = secondsToDhms(secondsToAmsterdam)
-
-    // Our bot needs to know if it will execute a command
-    // It will listen for messages that will start with `!`
     if (msg.content.substring(0, 1) == '!') {
         let args = msg.content.substring(1).split(' ')
         let cmd = args[0]
@@ -45,24 +39,14 @@ client.on('message', async msg => {
        
         args = args.splice(1)
         switch(cmd) {
-            case 'amsterdam':
-                msg.reply(`only ${timeToAmsterdam} left until Amsterdam`)
-                break;
-            case 'dam':
-                msg.reply(`only ${timeToAmsterdam} left until Amsterdam`)
-                break;
-            case 'ams':
-                msg.reply(`only ${timeToAmsterdam} left until Amsterdam`)
-                break;
-            case 'amst':
-                msg.reply(`only ${timeToAmsterdam} left until Amsterdam`)
-                break;
             case 'gordon':
                 await sneakInVoice(msg, gordonClip)
                 break;
             case 'wes':
                 await sneakInVoice(msg, wesClip)
                 break;
+            case 'origin':
+                await sneakInVoice(msg, originClip)
         }
     }
 
@@ -83,12 +67,6 @@ client.on('message', async msg => {
     if (sentByRicky(msg) && oneInX(15)) {
         msg.react(powderEmojiId)
         msg.react(headEmojiId)
-    }
-
-    // If we haven't posted today, post a message to the channel
-    if (lastDayDone !== dayjs().date()) {
-        msg.channel.send(`Only ${timeToAmsterdam} left until Amsterdam btw`)
-        lastDayDone = dayjs().date()
     }
 })
 
