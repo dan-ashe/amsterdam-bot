@@ -23,6 +23,7 @@ const learyEmojiId = '558690186356064256'
 const gordonClip = 'resources/audio/gordon.mp3'
 const wesClip = 'resources/audio/wes.mp3'
 const originClip = 'resources/audio/originClip.mp3'
+const rickyMumClip = 'resources/audio/rickyMumClip.mp3'
 
 // Image URLs
 const redKeyCardBunkersImage = 'https://i.imgur.com/VTaY0Y6.png'
@@ -59,6 +60,9 @@ client.on('message', async msg => {
                 break;
             case 'bunkers':
                 msg.reply(redKeyCardBunkersImage)
+                break;
+            case 'ricky':
+                await sneakInVoice(msg, rickyMumClip)
                 break;
         }
     }
