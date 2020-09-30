@@ -40,7 +40,7 @@ const commandList = [
     { name: '!red, !bunkers', value: 'Show the locations of the red access card bunkers' },
     { name: '!ricky', value: 'Play the ricky mum clip' },
     { name: '!codes', value: 'Show the locations of the code bunkers' },
-    { name: '!t5, !t5loot, !highloot', value: 'Show the locations of the t5 loot' }
+    { name: '!t5, !t5loot, !highloot', value: 'Show the locations of the t5 loot' },
     { name: '!subway', value: 'Show the locations of the subway stations' }
 ]
 
