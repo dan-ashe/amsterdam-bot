@@ -29,17 +29,19 @@ const rickyMumClip = 'resources/audio/rickyMumClip.mp3'
 const redKeyCardBunkersImage = 'https://i.imgur.com/VTaY0Y6.png'
 const tierFiveLootImage = 'https://i.imgur.com/mmh9eQA.jpg'
 const codesForBunkersImage = 'https://i.imgur.com/vCxtBzE.jpg'
+const subwayLocationsImage = 'https://i.imgur.com/lH2NKnJ.png'
 
 // Command List
 const commandList = [
-{ name: '!commands', value: 'List all of the commands' },
-{ name: '!gordon', value: 'Play gordon clip' },
-{ name: '!wes', value: 'Play wes clip' },
-{ name: '!origin', value: 'Play origin clip' },
-{ name: '!red, !bunkers', value: 'Show the locations of the red access card bunkers' },
-{ name: '!ricky', value: 'Play the ricky mum clip' },
-{ name: '!codes', value: 'Show the locations of the code bunkers' },
-{ name: '!t5, !t5loot, !highloot', value: 'Show the locations of the t5 loot' }
+    { name: '!commands', value: 'List all of the commands' },
+    { name: '!gordon', value: 'Play gordon clip' },
+    { name: '!wes', value: 'Play wes clip' },
+    { name: '!origin', value: 'Play origin clip' },
+    { name: '!red, !bunkers', value: 'Show the locations of the red access card bunkers' },
+    { name: '!ricky', value: 'Play the ricky mum clip' },
+    { name: '!codes', value: 'Show the locations of the code bunkers' },
+    { name: '!t5, !t5loot, !highloot', value: 'Show the locations of the t5 loot' }
+    { name: '!subway', value: 'Show the locations of the subway stations' }
 ]
 
 // Initialize Discord Bot
@@ -97,6 +99,9 @@ client.on('message', async msg => {
                 break;
             case 't5loot':
                 msg.reply(tierFiveLootImage)
+                break;
+            case 'subway':
+                msg.reply(subwayLocationsImage)
                 break;
         }
     }
