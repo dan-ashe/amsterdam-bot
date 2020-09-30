@@ -19,7 +19,7 @@ const learyEmojiId = '558690186356064256'
 
 const gordonClip = 'resources/audio/gordon.mp3'
 const wesClip = 'resources/audio/wes.mp3'
-const originClip = 'resources/audio/origin.mp3'
+const originClip = 'resources/audio/originClip.mp3'
 
 // Initialize Discord Bot
 const client = new Discord.Client()
@@ -47,6 +47,7 @@ client.on('message', async msg => {
                 break;
             case 'origin':
                 await sneakInVoice(msg, originClip)
+                break;
         }
     }
 
