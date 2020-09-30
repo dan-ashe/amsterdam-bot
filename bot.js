@@ -28,6 +28,16 @@ const rickyMumClip = 'resources/audio/rickyMumClip.mp3'
 // Image URLs
 const redKeyCardBunkersImage = 'https://i.imgur.com/VTaY0Y6.png'
 
+// Big Text
+const codesForBunkers = `
+1: Warzone Prison shack code - 72948531
+2: Warzone Farmland code - 49285163
+3: South Junkyard - 97264138
+4: North Junkyard - 87624851
+5: Park (nuke) - 60274513
+6: TV Station - 27495810
+`
+
 // Initialize Discord Bot
 const client = new Discord.Client()
 
@@ -63,6 +73,9 @@ client.on('message', async msg => {
                 break;
             case 'ricky':
                 await sneakInVoice(msg, rickyMumClip)
+                break;
+            case 'codes':
+                msg.reply(codesForBunkers)
                 break;
         }
     }
