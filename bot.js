@@ -27,26 +27,34 @@ const rickyMumClip = 'resources/audio/rickyMumClip.mp3'
 
 // Image URLs
 const redKeyCardBunkersImage = 'https://i.imgur.com/VTaY0Y6.png'
+const tierFiveLootImage = 'https://i.imgur.com/mmh9eQA.jpg'
+const codesForBunkersImage = 'https://i.imgur.com/vCxtBzE.jpg'
 
-// Big Text
-const codesForBunkers = `
-1: Warzone Prison shack code - 72948531
-2: Warzone Farmland code - 49285163
-3: South Junkyard - 97264138
-4: North Junkyard - 87624851
-5: Park (nuke) - 60274513
-6: TV Station - 27495810
-`
+// Command List
+const commandList = [
+{ name: '!commands', value: 'List all of the commands' },
+{ name: '!gordon', value: 'Play gordon clip' },
+{ name: '!wes', value: 'Play wes clip' },
+{ name: '!origin', value: 'Play origin clip' },
+{ name: '!red, !bunkers', value: 'Show the locations of the red access card bunkers' },
+{ name: '!ricky', value: 'Play the ricky mum clip' },
+{ name: '!codes', value: 'Show the locations of the code bunkers' },
+{ name: '!t5, !t5loot, !highloot', value: 'Show the locations of the t5 loot' }
+]
 
 // Initialize Discord Bot
 const client = new Discord.Client()
 
-const amsterdamDate = dayjs('2020-09-24T16:05:00.000Z')
-let lastDayDone = dayjs().date() - 1
-
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
 })
+
+const getCommandsMessage = () => {
+    return new Discord.MessageEmbed()
+      .setTitle('Commands')
+      .setColor(0xff0000)
+      .addFields(commandList)
+}
 
 client.on('message', async msg => {
     if (msg.content.substring(0, 1) == '!') {
@@ -56,6 +64,10 @@ client.on('message', async msg => {
        
         args = args.splice(1)
         switch(cmd) {
+            case 'commands':
+                const embedCommandMessage = getCommandsMessage()
+                msg.channel.send(embedCommandMessage)
+                break;
             case 'gordon':
                 await sneakInVoice(msg, gordonClip)
                 break;
@@ -75,7 +87,16 @@ client.on('message', async msg => {
                 await sneakInVoice(msg, rickyMumClip)
                 break;
             case 'codes':
-                msg.reply(codesForBunkers)
+                msg.reply(codesForBunkersImage)
+                break;
+            case 't5':
+                msg.reply(tierFiveLootImage)
+                break;
+            case 'highloot':
+                msg.reply(tierFiveLootImage)
+                break;
+            case 't5loot':
+                msg.reply(tierFiveLootImage)
                 break;
         }
     }
