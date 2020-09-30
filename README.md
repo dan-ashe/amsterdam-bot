@@ -1,10 +1,8 @@
-### Amsterdam Bot
+### Utility Bot
 
-A bot that counts down to amsterdam holiday
+A bot that performs numerous bespoke operations for a private discord server
 
 ----------
 
-Once per day, assuming there is at least one message sent in the discord server per day, the bot will post the time left until amsterdam holiday
-
 ## Commands
-* _!amsterdam | !ams | !dam | !amst_ - Replies to your message with the time left until Amsterdam
+* _!commands_ - List all commands available for use
