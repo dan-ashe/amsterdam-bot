@@ -38,7 +38,7 @@ const commandList = [
     { name: '!gordon', value: 'Play gordon clip' },
     { name: '!wes', value: 'Play wes clip' },
     { name: '!origin', value: 'Play origin clip' },
-    { name: '!red, !bunkers', value: 'Show the locations of the red access card bunkers' },
+    { name: '!red, !redaccesscard, !bunkers', value: 'Show the locations of the red access card bunkers' },
     { name: '!ricky', value: 'Play the ricky mum clip' },
     { name: '!rlkid', value: 'Play the RL kid clip' },
     { name: '!codes', value: 'Show the locations of the code bunkers' },
@@ -85,6 +85,9 @@ client.on('message', async msg => {
                 msg.reply(redKeyCardBunkersImage)
                 break;
             case 'bunkers':
+                msg.reply(redKeyCardBunkersImage)
+                break;
+            case 'redaccesscard':
                 msg.reply(redKeyCardBunkersImage)
                 break;
             case 'ricky':
