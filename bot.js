@@ -24,6 +24,7 @@ const gordonClip = 'resources/audio/gordon.mp3'
 const wesClip = 'resources/audio/wes.mp3'
 const originClip = 'resources/audio/originClip.mp3'
 const rickyMumClip = 'resources/audio/rickyMumClip.mp3'
+const rlKidClip = 'resources/audio/rlkid.mp3'
 
 // Image URLs
 const redKeyCardBunkersImage = 'https://i.imgur.com/VTaY0Y6.png'
@@ -39,6 +40,7 @@ const commandList = [
     { name: '!origin', value: 'Play origin clip' },
     { name: '!red, !bunkers', value: 'Show the locations of the red access card bunkers' },
     { name: '!ricky', value: 'Play the ricky mum clip' },
+    { name: '!rlkid', value: 'Play the RL kid clip' },
     { name: '!codes', value: 'Show the locations of the code bunkers' },
     { name: '!t5, !t5loot, !highloot', value: 'Show the locations of the t5 loot' },
     { name: '!subway', value: 'Show the locations of the subway stations' }
@@ -103,6 +105,9 @@ client.on('message', async msg => {
             case 'subway':
                 msg.reply(subwayLocationsImage)
                 break;
+            case 'rlkid':
+                await sneakInVoice(msg, rlKidClip)
+                break;    
         }
     }
 
