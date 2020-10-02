@@ -132,8 +132,7 @@ client.on('message', async msg => {
                 msg.reply(stadiumRoomLocations)
                 break;
             case 'stake':
-                // const stakingClient = new StakingClient(msg.channel, 'dan', 'mad')
-                // await stakingClient.stake()
+                await stakeHandler(msg, args)
                 break;
         }
     }
@@ -209,6 +208,19 @@ let sneakInVoice = async (requesterMsg, audioClip) => {
 
     } else {
         console.log('not in voice?')
+    }
+}
+
+let stakeHandler = async (msg, args) => {
+    let validCall = true
+    if (args.length !== 2) {
+        msg.reply('**Usage:** *!stake player1 player2*')
+        validCall = false
+    }
+
+    if (validCall) {
+        const stakingClient = new StakingClient(msg.channel, args[0], args[1])
+        await stakingClient.stake()
     }
 }
 
