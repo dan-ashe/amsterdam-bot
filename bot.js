@@ -31,6 +31,7 @@ const redKeyCardBunkersImage = 'https://i.imgur.com/VTaY0Y6.png'
 const tierFiveLootImage = 'https://i.imgur.com/mmh9eQA.jpg'
 const codesForBunkersImage = 'https://i.imgur.com/vCxtBzE.jpg'
 const subwayLocationsImage = 'https://i.imgur.com/lH2NKnJ.png'
+const stadiumRoomsMapImage = 'https://i.imgur.com/l0ferw7.png'
 
 // Command List
 const commandList = [
@@ -39,6 +40,7 @@ const commandList = [
     { name: '!wes', value: 'Play wes clip' },
     { name: '!origin', value: 'Play origin clip' },
     { name: '!red, !redaccesscard, !bunkers', value: 'Show the locations of the red access card bunkers' },
+    { name: '!blue, !blueaccesscard, !stadium', value: 'Show the locations of the stadium access card rooms' },
     { name: '!ricky', value: 'Play the ricky mum clip' },
     { name: '!rlkid', value: 'Play the RL kid clip' },
     { name: '!codes', value: 'Show the locations of the code bunkers' },
@@ -110,7 +112,19 @@ client.on('message', async msg => {
                 break;
             case 'rlkid':
                 await sneakInVoice(msg, rlKidClip)
-                break;    
+                break;
+            case 'blue':
+                msg.reply(stadiumRoomsMapImage)
+                msg.reply('P216 - Parking lot level (bottom), CL19 - Concourse level (middle), EL21 - Executive level (top)')
+                break;
+            case 'blueaccesscard':
+                msg.reply(stadiumRoomsMapImage)
+                msg.reply('P216 - Parking lot level (bottom), CL19 - Concourse level (middle), EL21 - Executive level (top)')
+                break;
+            case 'stadium':
+                msg.reply(stadiumRoomsMapImage)
+                msg.reply('P216 - Parking lot level (bottom), CL19 - Concourse level (middle), EL21 - Executive level (top)')
+                break;
         }
     }
 
