@@ -1,5 +1,8 @@
 const Discord = require('discord.js')
 const dayjs = require('dayjs')
+
+const StakingClient = require('./StakingClient.js')
+
 let auth = {
     token: process.env.BOT_TOKEN
 }
@@ -127,6 +130,9 @@ client.on('message', async msg => {
             case 'stadium':
                 msg.reply(stadiumRoomsMapImage)
                 msg.reply(stadiumRoomLocations)
+                break;
+            case 'stake':
+                const stakingClient = new StakingClient(msg.channel, 'dan', 'mad')
                 break;
         }
     }
