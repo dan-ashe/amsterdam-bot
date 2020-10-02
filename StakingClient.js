@@ -44,6 +44,7 @@ class StakingClient {
 			files: [lastHitsplatImage, coinsImage],
 			embed: this.generateEmbed(lastDamageDone, pidPlayer, `${this.player1HP === 0 ? this.player2 : this.player1}`)
 		})
+		lastEmbedMessage.delete()
 	}
 
 	doTurn(hitter) {
