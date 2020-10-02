@@ -51,7 +51,8 @@ const commandList = [
     { name: '!rlkid', value: 'Play the RL kid clip' },
     { name: '!codes', value: 'Show the locations of the code bunkers' },
     { name: '!t5, !t5loot, !highloot', value: 'Show the locations of the t5 loot' },
-    { name: '!subway', value: 'Show the locations of the subway stations' }
+    { name: '!subway', value: 'Show the locations of the subway stations' },
+    { name: '!stake <player1> <player2>', value: 'Stake player1 vs player2'}
 ]
 
 // Initialize Discord Bot

@@ -22,7 +22,7 @@ class StakingClient {
 		let lastHitsplatImage = null
 
 		while (this.player1HP > 0 && this.player2HP > 0) {
-			await new Promise(resolve => setTimeout(resolve, 2400)) // wait ~ 4 runescape ticks
+			await new Promise(resolve => setTimeout(resolve, 1800)) // wait ~3 runescape ticks
 
 			const damageDone = this.doTurn(hitter)
 			const hitsplatImage = new MessageAttachment(`./resources/images/staking/hitsplats/${damageDone}.png`)
