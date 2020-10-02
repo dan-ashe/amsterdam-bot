@@ -6,7 +6,7 @@ registerFont('./resources/fonts/runescape_uf.ttf', { family: 'Runescape Font' })
 /**
  * Code used to generate the runescape hit splats
  *
- * @param {int} numToGenerate the number of hitsplats to generate, starting at 0
+ * @param {Number} numToGenerate the number of hitsplats to generate, starting at 0
  */
 module.exports = async numToGenerate => {
 	for (let i = 0; i < numToGenerate; i++) {
