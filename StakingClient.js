@@ -16,14 +16,13 @@ class StakingClient {
 		let statusMessage = await this.channel.send(`${this.player1}: ${this.player1HP}   |   ${this.player2}: ${this.player2HP}`)
 
 		while (this.player1HP > 0 && this.player2HP > 0) {
+			await new Promise(resolve => setTimeout(resolve, 2400)) // wait ~ 4 runescape ticks
 			this.doTurn(hitter)
 			statusMessage.edit(`${this.player1}: ${this.player1HP}   |   ${this.player2}: ${this.player2HP}`)
 			hitter = hitter === 1 ? 2 : 1 // flip the hitter
-			await new Promise(resolve => setTimeout(resolve, 2400)) // wait ~ 4 runescape ticks
 		}
 
 		this.channel.send(`${this.player1HP > 0 ? this.player1 : this.player2} wins!`)
-		this.channel.send(`Final HP   -   ${this.player1}: ${this.player1HP}   ${this.player2}: ${this.player2HP}`)
 	}
 
 	doTurn(hitter) {

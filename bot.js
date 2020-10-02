@@ -132,8 +132,8 @@ client.on('message', async msg => {
                 msg.reply(stadiumRoomLocations)
                 break;
             case 'stake':
-                const stakingClient = new StakingClient(msg.channel, 'dan', 'mad')
-                await stakingClient.stake()
+                // const stakingClient = new StakingClient(msg.channel, 'dan', 'mad')
+                // await stakingClient.stake()
                 break;
         }
     }
