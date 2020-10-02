@@ -33,6 +33,9 @@ const codesForBunkersImage = 'https://i.imgur.com/vCxtBzE.jpg'
 const subwayLocationsImage = 'https://i.imgur.com/lH2NKnJ.png'
 const stadiumRoomsMapImage = 'https://i.imgur.com/l0ferw7.png'
 
+// Text
+const stadiumRoomLocations = 'P216 - Parking lot level (bottom), CL19 - Concourse level (middle), EL21 - Executive level (top)'
+
 // Command List
 const commandList = [
     { name: '!commands', value: 'List all of the commands' },
@@ -115,15 +118,15 @@ client.on('message', async msg => {
                 break;
             case 'blue':
                 msg.reply(stadiumRoomsMapImage)
-                msg.reply('P216 - Parking lot level (bottom), CL19 - Concourse level (middle), EL21 - Executive level (top)')
+                msg.reply(stadiumRoomLocations)
                 break;
             case 'blueaccesscard':
                 msg.reply(stadiumRoomsMapImage)
-                msg.reply('P216 - Parking lot level (bottom), CL19 - Concourse level (middle), EL21 - Executive level (top)')
+                msg.reply(stadiumRoomLocations)
                 break;
             case 'stadium':
                 msg.reply(stadiumRoomsMapImage)
-                msg.reply('P216 - Parking lot level (bottom), CL19 - Concourse level (middle), EL21 - Executive level (top)')
+                msg.reply(stadiumRoomLocations)
                 break;
         }
     }
