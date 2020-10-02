@@ -7,16 +7,18 @@ class StakingClient {
 		this.player2 = player2
 		this.player1HP = 100
 		this.player2HP = 100
-		this.hitter = Math.floor(Math.random() * 2) + 1 // Who hits first
-		await this.stake()
 	}
 
 	async stake() {
-		this.channel.send(`${this.hitter === 1 ? this.player1 : this.player2} has PID`)
+		let hitter = Math.floor(Math.random() * 2) + 1 // Who hits first
+
+		this.channel.send(`${hitter === 1 ? this.player1 : this.player2} has PID`)
+		let statusMessage = await this.channel.send(`${this.player1}: ${this.player1HP}   |   ${this.player2}: ${this.player2HP}`)
 
 		while (this.player1HP > 0 && this.player2HP > 0) {
-			this.doTurn(this.hitter)
-			this.hitter = this.hitter === 1 ? 2 : 1 // flip the hitter
+			this.doTurn(hitter)
+			statusMessage.edit(`${this.player1}: ${this.player1HP}   |   ${this.player2}: ${this.player2HP}`)
+			hitter = hitter === 1 ? 2 : 1 // flip the hitter
 			await new Promise(resolve => setTimeout(resolve, 2400)) // wait ~ 4 runescape ticks
 		}
 
@@ -24,8 +26,8 @@ class StakingClient {
 		this.channel.send(`Final HP   -   ${this.player1}: ${this.player1HP}   ${this.player2}: ${this.player2HP}`)
 	}
 
-	doTurn(message, hitter) {
-		if (this.hitter === 1) {
+	doTurn(hitter) {
+		if (hitter === 1) {
 			this.player2HP -= this.getHit()
 			this.player2HP = Math.max(0, this.player2HP)
 		} else {

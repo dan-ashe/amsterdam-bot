@@ -133,6 +133,7 @@ client.on('message', async msg => {
                 break;
             case 'stake':
                 const stakingClient = new StakingClient(msg.channel, 'dan', 'mad')
+                await stakingClient.stake()
                 break;
         }
     }
