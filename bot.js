@@ -32,6 +32,7 @@ const rlKidClip = 'resources/audio/rlkid.mp3'
 // Image URLs
 const redKeyCardBunkersImage = 'https://i.imgur.com/VTaY0Y6.png'
 const tierFiveLootImage = 'https://i.imgur.com/mmh9eQA.jpg'
+const tierFourLootImage = 'https://i.imgur.com/rrEWws4.jpeg'
 const codesForBunkersImage = 'https://i.imgur.com/vCxtBzE.jpg'
 const subwayLocationsImage = 'https://i.imgur.com/lH2NKnJ.png'
 const stadiumRoomsMapImage = 'https://i.imgur.com/l0ferw7.png'
@@ -51,6 +52,7 @@ const commandList = [
     { name: '!rlkid', value: 'Play the RL kid clip' },
     { name: '!codes', value: 'Show the locations of the code bunkers' },
     { name: '!t5, !t5loot, !highloot', value: 'Show the locations of the t5 loot' },
+    { name: '!t4, !t4loot', value: 'Show the locations of the t4 loot' },
     { name: '!subway', value: 'Show the locations of the subway stations' },
     { name: '!stake <player1> <player2>', value: 'Stake player1 vs player2'}
 ]
@@ -113,6 +115,12 @@ client.on('message', async msg => {
                 break;
             case 't5loot':
                 msg.reply(tierFiveLootImage)
+                break;
+            case 't4':
+                msg.reply(tierFourLootImage)
+                break;
+            case 't4loot':
+                msg.reply(tierFourLootImage)
                 break;
             case 'subway':
                 msg.reply(subwayLocationsImage)
