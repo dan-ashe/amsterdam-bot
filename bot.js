@@ -245,7 +245,7 @@ let stakeHandler = async (msg, args) => {
     }
 
     if (validCall) {
-        const stakingClient = new GraphicalStakingClient(msg.channel, args[0], args[1]) // StakingClient(msg.channel, args[0], args[1])
+        const stakingClient = new GraphicalStakingClient(msg.channel, args[0], args[1]) // StakingClient(msg.channel, args[0], args[1]) for text + static image based stake
         await stakingClient.stake()
     }
 }

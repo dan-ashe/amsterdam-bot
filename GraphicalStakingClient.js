@@ -1,4 +1,5 @@
 const { createCanvas, loadImage, registerFont } = require('canvas')
+const { MessageAttachment } = require('discord.js')
 const { v4: uuid } = require('uuid')
 const fs = require('fs')
 
@@ -21,7 +22,7 @@ const templateMetadata = [
 		player2: {
 			nameLocation: { x: 146, y: 22 },
 			hitsplatLocation: { x: 136, y: 106 },
-			healthLocation: { x: 144, y: 33 }
+			healthLocation: { x: 114, y: 33 }
 		}
 	}
 ]
@@ -55,8 +56,8 @@ class GraphicalStakingClient extends StakingClient {
 		// Draw the HP bars
 		const player1HPBarLocation = templateMetadata[TEMPLATE_TO_USE].player1.healthLocation
 		const player2HPBarLocation = templateMetadata[TEMPLATE_TO_USE].player2.healthLocation
-		const player1HPBar = await loadImage(`./resources/images/staking/healthbars/${this.player1HP}`)
-		const player2HPBar = await loadImage(`./resources/images/staking/healthbars/${this.player2HP}`)
+		const player1HPBar = await loadImage(`./resources/images/staking/healthbars/${this.player1HP}.png`)
+		const player2HPBar = await loadImage(`./resources/images/staking/healthbars/${this.player2HP}.png`)
 
 		context.drawImage(player1HPBar, player1HPBarLocation.x, player1HPBarLocation.y)
 		context.drawImage(player2HPBar, player2HPBarLocation.x, player2HPBarLocation.y)
@@ -74,9 +75,9 @@ class GraphicalStakingClient extends StakingClient {
 
 		// Save the image to this stake's folder
 		const buffer = canvas.toBuffer('image/png')
-		fs.writeFileSync(`./temp/${this.stakeId}/template.png`, buffer)
+		fs.writeFileSync(`./temp/${this.stakeId}/${damageDone}.png`, buffer)
 
-		return new MessageAttachment(`./resources/images/staking/hitsplats/${damageDone}.png`)
+		return new MessageAttachment(`./temp/${this.stakeId}/${damageDone}.png`)
 	}
 
 
@@ -101,8 +102,8 @@ class GraphicalStakingClient extends StakingClient {
 		const player1NameLocation = templateMetadata[TEMPLATE_TO_USE].player1.nameLocation
 		const player2NameLocation = templateMetadata[TEMPLATE_TO_USE].player2.nameLocation
 
-		context.fillText(this.player1Name, player1NameLocation.x, player1NameLocation.y)
-		context.fillText(this.player2Name, player2NameLocation.x, player2NameLocation.y)
+		context.fillText(this.player1, player1NameLocation.x, player1NameLocation.y)
+		context.fillText(this.player2, player2NameLocation.x, player2NameLocation.y)
 
 		// Create the temp folder for this stake's files to live in
 		if (!fs.existsSync(`./temp/${this.stakeId}`)) {

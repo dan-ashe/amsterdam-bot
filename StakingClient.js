@@ -28,20 +28,16 @@ class StakingClient {
 
 		// Game loop
 		while (this.player1HP > 0 && this.player2HP > 0) {
-			console.log('in loop')
 			await new Promise(resolve => setTimeout(resolve, 1200)) // wait ~2 runescape ticks
 
 			const damageDone = this.doTurn()
-			const stakeImage = this.nextStakeImage(damageDone)
-
-			console.log('in loop 2')
+			const stakeImage = await this.nextStakeImage(damageDone)
 			
 			try {
 				const embedMessage = await this.channel.send({
 					files: [stakeImage, this.COINS_IMAGE],
 					embed: this.generateEmbed(damageDone)
 				})
-				console.log('in loop 3')
 				lastEmbedMessage.delete()
 
 				lastEmbedMessage = embedMessage
@@ -52,8 +48,6 @@ class StakingClient {
 			}
 		}
 
-		console.log('finished loop')
-
 		// Publish results
 		await this.channel.send({
 			files: [lastStakeImage, this.COINS_IMAGE],
@@ -63,7 +57,7 @@ class StakingClient {
 	}
 
 	nextStakeImage(damageDone) {
-		return new MessageAttachment(`./resources/images/staking/hitsplats/${damageDone}.png`)
+		return new Promise.resolve(MessageAttachment(`./resources/images/staking/hitsplats/${damageDone}.png`))
 	}
 
 	doTurn() {
@@ -88,23 +82,14 @@ class StakingClient {
 		return Math.floor(Math.random() * MAX_HIT)
 	}
 
-	generateEmbed(stakeImage, winner) {
+	generateEmbed(damageDone, winner) {
 		const embed = {
 			color: 0x3a3325,
-			title: 'Staking Local',
+			title: 'Staking',
 			thumbnail: {
 				url: 'attachment://coins.png',
 			},
 			fields: [
-				{
-					name: `${this.player1} vs ${this.player2}`,
-					value: '\u200b',
-				},
-				{
-					name: `${winner ? `${winner} wins!` : '\u200b'}`,
-					value: '\u200b',
-					inline: false,
-				},
 				{
 					name: this.player1,
 					value: this.player1HP,
@@ -122,7 +107,7 @@ class StakingClient {
 				},
 			],
 			image: {
-				url: `attachment://${stakeImage}.png`,
+				url: `attachment://${damageDone}.png`,
 			}
 		}
 
