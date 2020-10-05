@@ -2,6 +2,8 @@ const Discord = require('discord.js')
 const dayjs = require('dayjs')
 
 const StakingClient = require('./StakingClient.js')
+const GraphicalStakingClient = require('./GraphicalStakingClient.js')
+const clearTempDirectory = require('./util/clearTempDirectory.js')
 
 let auth = {
     token: process.env.BOT_TOKEN
@@ -62,8 +64,9 @@ const commandList = [
 // Initialize Discord Bot
 const client = new Discord.Client()
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`)
+client.on('ready', async () => {
+    console.log(`Logged in as ${client.user.tag}!`)
+    clearTempDirectory()
 })
 
 const getCommandsMessage = () => {
@@ -181,17 +184,17 @@ client.on('message', async msg => {
 })
 
 let secondsToDhms = seconds => {
-  let d = Math.floor(seconds / (3600*24))
-  let h = Math.floor(seconds % (3600*24) / 3600)
-  let m = Math.floor(seconds % 3600 / 60)
-  let s = Math.floor(seconds % 60)
+    let d = Math.floor(seconds / (3600*24))
+    let h = Math.floor(seconds % (3600*24) / 3600)
+    let m = Math.floor(seconds % 3600 / 60)
+    let s = Math.floor(seconds % 60)
 
-  let dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : ""
-  let hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : ""
-  let mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : ""
-  let sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : ""
+    let dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : ""
+    let hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : ""
+    let mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : ""
+    let sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : ""
 
-  return dDisplay + hDisplay + mDisplay + 'and ' + sDisplay
+    return dDisplay + hDisplay + mDisplay + 'and ' + sDisplay
 }
 
 let oneInX = x => {
@@ -242,7 +245,7 @@ let stakeHandler = async (msg, args) => {
     }
 
     if (validCall) {
-        const stakingClient = new StakingClient(msg.channel, args[0], args[1])
+        const stakingClient = new GraphicalStakingClient(msg.channel, args[0], args[1]) // StakingClient(msg.channel, args[0], args[1]) for text + static image based stake
         await stakingClient.stake()
     }
 }

@@ -10,8 +10,8 @@ registerFont('./resources/fonts/runescape_uf.ttf', { family: 'Runescape Font' })
  */
 module.exports = async numToGenerate => {
 	for (let i = 0; i < numToGenerate; i++) {
-		const width = 48
-		const height = 44
+		const width = (48 * 3) / 4
+		const height = (44 * 3) / 4
 
 		const canvas = createCanvas(width, height)
 		const context = canvas.getContext('2d')
@@ -23,18 +23,18 @@ module.exports = async numToGenerate => {
 			hitsplatImage = await loadImage('./resources/images/staking/hitsplats/plain_red_hitsplat.png')
 		}
 
-		context.drawImage(hitsplatImage, 0, 0, 48, 44)
+		context.drawImage(hitsplatImage, 0, 0, width, height)
 
-		context.font = '24px "Runescape Font"'
+		context.font = '18px "Runescape Font"'
 		context.textAlign = 'center'
 		context.textBaseline = 'middle'
 		context.fillStyle = '#fff'
 
 		const text = i.toString()
 
-		context.fillText(text, 24, 22)
+		context.fillText(text, width/2, height/2)
 
 		const buffer = canvas.toBuffer('image/png')
-		fs.writeFileSync(`./resources/images/staking/hitsplats/${i}.png`, buffer)
+		fs.writeFileSync(`./resources/images/staking/smaller_hitsplats/${i}.png`, buffer)
 	}
 }
