@@ -1,6 +1,9 @@
 const MAX_HIT = 25
 const { MessageAttachment } = require('discord.js')
 
+/**
+ * A basic Staking client with methods to perform an embed stake session with simple hitsplat images
+ */
 class StakingClient {
 	constructor(channel, player1, player2) {
 		this.channel = channel
@@ -8,56 +11,74 @@ class StakingClient {
 		this.player2 = player2
 		this.player1HP = 100
 		this.player2HP = 100
+		this.hitter = Math.floor(Math.random() * 2) + 1 // Who hits first
+		this.COINS_IMAGE = new MessageAttachment('./resources/images/staking/coins.png')
 	}
 
 	async stake() {
-		let hitter = Math.floor(Math.random() * 2) + 1 // Who hits first
-		const pidPlayer = hitter === 1 ? this.player1 : this.player2
+		console.log('publishing pidder')
+		// Inform players who has pid
+		this.channel.send(`${this.hitter === 1 ? this.player1 : this.player2} has pid`)
 
-		const coinsImage = new MessageAttachment('./resources/images/staking/coins.png')
-
+		// Setup
 		let stakingEmbed
 		let lastEmbedMessage = { delete: () => {} }
 		let lastDamageDone = 0
-		let lastHitsplatImage = null
+		let lastStakeImage = null
 
+		// Game loop
 		while (this.player1HP > 0 && this.player2HP > 0) {
-			await new Promise(resolve => setTimeout(resolve, 1800)) // wait ~3 runescape ticks
+			console.log('in loop')
+			await new Promise(resolve => setTimeout(resolve, 1200)) // wait ~2 runescape ticks
 
-			const damageDone = this.doTurn(hitter)
-			const hitsplatImage = new MessageAttachment(`./resources/images/staking/hitsplats/${damageDone}.png`)
+			const damageDone = this.doTurn()
+			const stakeImage = this.nextStakeImage(damageDone)
+
+			console.log('in loop 2')
 			
-			const embedMessage = await this.channel.send({
-				files: [hitsplatImage, coinsImage],
-				embed: this.generateEmbed(damageDone, pidPlayer)
-			})
-			lastEmbedMessage.delete()
+			try {
+				const embedMessage = await this.channel.send({
+					files: [stakeImage, this.COINS_IMAGE],
+					embed: this.generateEmbed(damageDone)
+				})
+				console.log('in loop 3')
+				lastEmbedMessage.delete()
 
-			lastEmbedMessage = embedMessage
-			lastDamageDone = damageDone
-			lastHitsplatImage = hitsplatImage
-
-			hitter = hitter === 1 ? 2 : 1 // flip the hitter
+				lastEmbedMessage = embedMessage
+				lastDamageDone = damageDone
+				lastStakeImage = stakeImage
+			} catch (e) {
+				console.error(e)
+			}
 		}
 
+		console.log('finished loop')
+
+		// Publish results
 		await this.channel.send({
-			files: [lastHitsplatImage, coinsImage],
-			embed: this.generateEmbed(lastDamageDone, pidPlayer, `${this.player1HP === 0 ? this.player2 : this.player1}`)
+			files: [lastStakeImage, this.COINS_IMAGE],
+			embed: this.generateEmbed(lastDamageDone, `${this.player1HP === 0 ? this.player2 : this.player1}`)
 		})
 		lastEmbedMessage.delete()
 	}
 
-	doTurn(hitter) {
+	nextStakeImage(damageDone) {
+		return new MessageAttachment(`./resources/images/staking/hitsplats/${damageDone}.png`)
+	}
+
+	doTurn() {
 		let damageDone
 
-		if (hitter === 1) {
+		if (this.hitter === 1) {
 			damageDone = this.getHit()
 			this.player2HP -= damageDone
 			this.player2HP = Math.max(0, this.player2HP)
+			this.hitter = 2
 		} else {
 			damageDone = this.getHit()
 			this.player1HP -= damageDone
 			this.player1HP = Math.max(0, this.player1HP)
+			this.hitter = 1
 		}
 
 		return damageDone
@@ -67,16 +88,16 @@ class StakingClient {
 		return Math.floor(Math.random() * MAX_HIT)
 	}
 
-	generateEmbed(damageDone, pidPlayer, winner) {
+	generateEmbed(stakeImage, winner) {
 		const embed = {
 			color: 0x3a3325,
-			title: 'Staking',
+			title: 'Staking Local',
 			thumbnail: {
 				url: 'attachment://coins.png',
 			},
 			fields: [
 				{
-					name: `${this.player1} vs ${this.player2} (${pidPlayer} has pid)`,
+					name: `${this.player1} vs ${this.player2}`,
 					value: '\u200b',
 				},
 				{
@@ -101,7 +122,7 @@ class StakingClient {
 				},
 			],
 			image: {
-				url: `attachment://${damageDone}.png`,
+				url: `attachment://${stakeImage}.png`,
 			}
 		}
 

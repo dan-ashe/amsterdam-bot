@@ -2,7 +2,8 @@ const Discord = require('discord.js')
 const dayjs = require('dayjs')
 
 const StakingClient = require('./StakingClient.js')
-const GraphicalStaker = require('./GraphicalStaker.js')
+const GraphicalStakingClient = require('./GraphicalStakingClient.js')
+const clearTempDirectory = require('./util/clearTempDirectory.js')
 
 let auth = {
     token: process.env.BOT_TOKEN
@@ -65,8 +66,7 @@ const client = new Discord.Client()
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    const graphicalStaker = new GraphicalStaker('Daniel', 'Madeleine', 1)
-    await graphicalStaker.generateStakeTemplate()
+    clearTempDirectory()
 })
 
 const getCommandsMessage = () => {
@@ -245,7 +245,7 @@ let stakeHandler = async (msg, args) => {
     }
 
     if (validCall) {
-        const stakingClient = new StakingClient(msg.channel, args[0], args[1])
+        const stakingClient = new GraphicalStakingClient(msg.channel, args[0], args[1]) // StakingClient(msg.channel, args[0], args[1])
         await stakingClient.stake()
     }
 }
