@@ -54,7 +54,7 @@ const commandList = [
     { name: '!codes', value: 'Show the locations of the code bunkers' },
     { name: '!t5, !t5loot', value: 'Show the locations of the t5 loot' },
     { name: '!t4, !t4loot', value: 'Show the locations of the t4 loot' },
-    { name: '!t4t5, !t4+t5, !t4&t5, !highloot', value: 'Show the locations of t4 and t5 loot' },
+    { name: '!t4t5, !t5t4, !t4+t5, !t4&t5, !highloot', value: 'Show the locations of t4 and t5 loot' },
     { name: '!subway', value: 'Show the locations of the subway stations' },
     { name: '!stake <player1> <player2>', value: 'Stake player1 vs player2'}
 ]
@@ -122,6 +122,9 @@ client.on('message', async msg => {
                 msg.reply(tierFourLootImage)
                 break;
             case 't4t5':
+                msg.reply(t4t5LootImage)
+                break;
+            case 't5t4':
                 msg.reply(t4t5LootImage)
                 break;
             case 't4+t5':
