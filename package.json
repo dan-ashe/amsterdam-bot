@@ -2,7 +2,7 @@
   "name": "bespoke-discord-bot",
   "version": "1.0.0",
   "description": "A bot that performs numerous bespoke operations for a private discord server.",
-  "main": "bot.js",
+  "main": "lib/bot.js",
   "author": "Dxshe",
   "license": "ISC",
   "scripts": {
