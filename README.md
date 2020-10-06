@@ -1,4 +1,4 @@
-### Utility Bot
+### Beskpoke Discord Bot
 
 A bot that performs numerous bespoke operations for a private discord server
 
