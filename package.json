@@ -6,7 +6,7 @@
   "author": "Dxshe",
   "license": "ISC",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node lib/bot.js"
   },
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
